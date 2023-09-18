@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.example.demo.stub;
+
+service CustomerService {
+  rpc GetAllCustomers (GetAllCustomersRequest) returns (GetCustomersResponse);
+  rpc GetCustomerById (GetCustomerByIdRequest) returns (GetCustomerByIdResponse);
+  rpc SaveCustomer(SaveCustomerRequest) returns (SaveCustomerResponse);
+}
+
+message GetAllCustomersRequest {}
+
+message GetCustomersResponse {
+  repeated Customer customers = 1;
+}
+
+message Customer {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message GetCustomerByIdRequest {
+  int64 customer_id = 1;
+}
+
+message GetCustomerByIdResponse {
+  Customer customer = 1;
+}
+
+message SaveCustomerRequest{
+	CustomerRequest customer=1;
+}
+
+message CustomerRequest {
+	string name=1;
+	string email=2;
+}
+
+message SaveCustomerResponse{
+	Customer customer=1;
+}
